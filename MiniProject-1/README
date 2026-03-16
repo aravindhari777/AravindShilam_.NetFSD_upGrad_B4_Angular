@@ -1,152 +1,89 @@
-if(localStorage.getItem("login") !== "true"){
+📌 Upgrad Virtual Event Management System
 
-document.body.innerHTML = `
+The Upgrad Virtual Event Management System is a web-based application that allows users to explore, register, and manage virtual events. The system is built using HTML, CSS, Bootstrap, and JavaScript and demonstrates front-end development concepts such as client-side validation, DOM manipulation, and dynamic data handling using LocalStorage.
 
-<div class="container mt-5">
+This application has two types of users:
 
-<div class="alert alert-warning text-center" role="alert">
+Participant – Can view events and register.
 
-<strong>Please login first!</strong><br>
-Redirecting to login page...
+Admin – Can log in and manage events.
 
-</div>
+🚀 Features
+👤 Participant Features
 
-</div>
+View upcoming events on the Home Page
 
-`;
+Register for events
 
-setTimeout(function(){
-window.location.href="login.html";
-},2000);
+Submit queries using the Contact Us page
 
-}
+🔑 Admin Features
 
-let events = JSON.parse(localStorage.getItem("events")) || [];
+Secure login using predefined credentials
 
-function addEvent(){
+Add new events
 
-let id=document.getElementById("eventId").value;
-let name=document.getElementById("eventName").value;
-let category=document.getElementById("category").value;
-let date=document.getElementById("date").value;
-let time=document.getElementById("time").value;
-let url=document.getElementById("url").value;
+Search events by ID, Name, or Category
 
-if (!id || !name || !category || !date || !time || !url) {
-    showAlert("Please fill all fields","warning");
-    return;
-}
+Delete events
 
-let event = { id,name,category,date,time,url };
+Logout from the system
 
-events.push(event);
+🛠️ Technologies Used
 
-localStorage.setItem("events",JSON.stringify(events));
+HTML5
 
-displayEvents(events);
+CSS3
 
-showAlert("Event added successfully","success");
+Bootstrap 5
 
-}
+JavaScript
 
-function displayEvents(list){
+LocalStorage (for event data storage)
 
-let container = document.getElementById("eventContainer");
+🔐 Admin Login Credentials
+Email: admin@upgrad.com
+Password: 12345
 
-container.innerHTML = "";
+⚙️ Functional Highlights
 
-list.forEach((e,index)=>{
+Client-side validation using HTML attributes like:
 
-container.innerHTML += `
-<div class="col-md-4 mt-3">
+required
 
-<div class="card p-3">
+type="email"
 
-<h5>${e.name}</h5>
+type="url"
 
-<p><b>ID:</b> ${e.id}</p>
+type="date"
 
-<p><b>Category:</b> ${e.category}</p>
+Dynamic event display using JavaScript DOM manipulation
 
-<p><b>Date:</b> ${e.date}</p>
+Event data stored using LocalStorage
 
-<p><b>Time:</b> ${e.time}</p>
+Bootstrap alerts for user feedback
 
-<a href="${e.url}" class="btn btn-primary w-100">
-Join Event
-</a>
+Protected admin routes
 
-<button onclick="deleteEvent(${index})"
-class="btn btn-danger w-100 mt-2">
-Delete
-</button>
+📊 Evaluation Criteria Covered
 
-</div>
+✔ Functional Requirements
+✔ Responsive UI Design
+✔ Client-Side Validation
+✔ CRUD Operations
+✔ Bootstrap Components
+✔ Clean Code Structure
 
-</div>
-`;
+📌 Conclusion
 
-});
+The Upgrad Virtual Event Management System demonstrates the implementation of a responsive web application with dynamic event handling and client-side validation. The project provides practical experience in frontend development using Bootstrap and JavaScript while implementing real-world application features such as authentication, event management, and user interaction.
 
-}
-function searchEvent(){
+✅ If you want, I can also give you a more professional README version (for GitHub submission) with:
 
-let name=document.getElementById("searchName").value.toLowerCase();
-let category=document.getElementById("searchCategory").value.toLowerCase();
+📁 Project folder structure
 
-let filtered=events.filter(e =>
-e.name.toLowerCase().includes(name) &&
-e.category.toLowerCase().includes(category)
-);
+⚡ Installation steps
 
-displayEvents(filtered);
+🔗 Live demo section
 
-}
-function deleteEvent(index){
-
-events.splice(index,1);
-
-localStorage.setItem("events",JSON.stringify(events));
-
-displayEvents(events);
-showAlert("Event deleted successfully","danger");
-}
-
-function searchEvent(){
-
-let name=document.getElementById("searchName").value.toLowerCase();
-let category=document.getElementById("searchCategory").value.toLowerCase();
-
-let filtered=events.filter(e=>
-
-e.name.toLowerCase().includes(name) &&
-e.category.toLowerCase().includes(category)
-
-);
-
-displayEvents(filtered);
-
-}
-
-displayEvents(events);
-
-function logout(){
-
-localStorage.removeItem("login");
-
-window.location.href="login.html";
-
-}
-function showAlert(message,type){
-
-document.getElementById("alertBox").innerHTML =
-
-`<div class="alert alert-${type} alert-dismissible fade show" role="alert">
-
-${message}
-
-<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-
-</div>`;
-
-}
+⭐ GitHub badges
